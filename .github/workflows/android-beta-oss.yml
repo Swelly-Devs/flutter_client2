@@ -25,24 +25,9 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: bash .github/scripts/resolve_beta_version_name.sh
 
-      - name: Fetch Android build number
+      - name: Set Android build number
         id: android_build_number
-        env:
-          BUILD_SERVICE_TOKEN: ${{ secrets.BUILD_SERVICE_TOKEN }}
-          BUILD_SERVICE_URL: ${{ secrets.BUILD_SERVICE_URL }}
-        run: |
-          set -euo pipefail
-          URL="https://$BUILD_SERVICE_URL/v1/build-number?platform=android"
-          echo "Calling build service at $URL"
-          RESPONSE=$(curl -sS -X POST "$URL" \
-            -H "Authorization: Bearer $BUILD_SERVICE_TOKEN")
-          RESPONSE_ONE_LINE=$(printf '%s' "$RESPONSE" | tr -d '\n')
-          BUILD_NUMBER=$(printf '%s\n' "$RESPONSE_ONE_LINE" | sed -n 's/.*"buildNumber"[[:space:]]*:[[:space:]]*\([0-9][0-9]*\).*/\1/p')
-          if ! [[ "$BUILD_NUMBER" =~ ^[0-9]+$ ]]; then
-            echo "::error::Invalid or missing buildNumber in response: $RESPONSE"
-            exit 1
-          fi
-          echo "build_number=$BUILD_NUMBER" >> "$GITHUB_OUTPUT"
+        run: echo "build_number=1" >> "$GITHUB_OUTPUT"
 
       - name: Sync submodules
         run: git submodule update --init --recursive
@@ -52,6 +37,7 @@ jobs:
         with:
           distribution: temurin
           java-version: "17"
+
       - name: Restore Gradle cache
         uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830
         with:
@@ -67,6 +53,7 @@ jobs:
         uses: axi92/flutter-action@72633a794ba0b23276fa4fc465a6cacb758a90c5
         with:
           channel: stable
+
       - name: Restore pub cache
         uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830
         with:
