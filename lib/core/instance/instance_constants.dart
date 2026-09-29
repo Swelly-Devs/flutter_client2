@@ -1,8 +1,8 @@
 abstract final class InstanceConstants {
   static const int apiCodeVersion = 1;
-  static const String defaultApiBaseUrl = 'https://fluxer.com/api/v1';
-  static const String defaultGatewayUrl = 'wss://gateway.fluxer.com';
-  static const String defaultInstanceInputUrl = 'fluxer.com';
+static const String defaultApiBaseUrl = 'https://beyondform.shop/api/v1';
+static const String defaultGatewayUrl = 'wss://beyondform.shop/gateway';
+static const String defaultInstanceInputUrl = 'beyondform.shop';
   static const String canaryApiBaseUrl = 'https://canary.fluxer.com/api/v1';
   static const String canaryInstanceInputUrl = 'canary.fluxer.com';
   static const String defaultMarketingBaseUrl = 'https://fluxer.app';
