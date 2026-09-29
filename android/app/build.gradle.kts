@@ -3,7 +3,6 @@ import java.util.Properties
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
 }
 
@@ -57,13 +56,13 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.fluxer"
+        applicationId = "com.ashis.nexa"
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
         multiDexEnabled = true
-        manifestPlaceholders["appLabel"] = "Fluxer"
+        manifestPlaceholders["appLabel"] = "Nexa"
         manifestPlaceholders["buildEnvironment"] = "stable"
         manifestPlaceholders["pushProvider"] = "fcm"
     }
@@ -73,17 +72,17 @@ android {
             dimension = "environment"
             applicationIdSuffix = ".canary"
             versionNameSuffix = "-canary"
-            manifestPlaceholders["appLabel"] = "Fluxer Canary"
+            manifestPlaceholders["appLabel"] = "Nexa"
             manifestPlaceholders["buildEnvironment"] = "canary"
         }
         create("stable") {
             dimension = "environment"
-            manifestPlaceholders["appLabel"] = "Fluxer"
+            manifestPlaceholders["appLabel"] = "Nexa"
             manifestPlaceholders["buildEnvironment"] = "stable"
         }
         create("beta") {
             dimension = "environment"
-            manifestPlaceholders["appLabel"] = "Fluxer Beta"
+            manifestPlaceholders["appLabel"] = "Nexa"
             manifestPlaceholders["buildEnvironment"] = "beta"
         }
         create("fcm") {
